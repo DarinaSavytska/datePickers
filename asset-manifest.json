@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/datePickers/static/js/main.d8aabbbc.js",
+    "index.html": "/datePickers/index.html",
+    "main.d8aabbbc.js.map": "/datePickers/static/js/main.d8aabbbc.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.d8aabbbc.js"
+  ]
+}
