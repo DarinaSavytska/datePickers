@@ -21,6 +21,7 @@
     "noEmit": true,
     "baseUrl": "./src",
     "types": ["jest"],
+    "noImplicitAny": false,
   },
   "include": [
     "src"
