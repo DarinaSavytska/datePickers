@@ -8,21 +8,26 @@ import './styles.scss';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import ua from 'date-fns/locale/uk';
+import { registerLocale, setDefaultLocale } from 'react-datepicker';
+registerLocale('ua', ua);
+
 const { RangePicker } = antdDatePicker;
 
 const DatePickers: React.FC = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-      <p>Hello DatePicker</p>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+  return (
+    <div>
+      <p style={{ margin: '20px' }}>Hello DatePicker</p>
+
+      <div style={{ margin: '20px' }}>
         <p>Hello, I'm your default DatePicker for desktop by antd</p>
         <RangePicker showTime />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ margin: '20px' }}>
         <p>Hello, I'm DatePicker by rsuite</p>
         {/* https://rsuitejs.com/components/date-range-picker/ */}
         <DateRangePicker
@@ -35,10 +40,10 @@ const DatePickers: React.FC = () => {
         />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div style={{ margin: '20px' }}>
         <p>Hello, I'm DatePicker, Crafted by HackerOne</p>
         {/* https://reactdatepicker.com/ */}
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div>
           <DatePicker
             selected={startDate}
             onChange={date => setStartDate(date)}
@@ -48,6 +53,7 @@ const DatePickers: React.FC = () => {
             startDate={startDate}
             endDate={endDate}
             selectsStart
+            locale='ua'
           />
           <p>to</p>
           <DatePicker
@@ -60,6 +66,7 @@ const DatePickers: React.FC = () => {
             startDate={startDate}
             endDate={endDate}
             minDate={startDate}
+            locale='ua'
           />
         </div>
       </div>
