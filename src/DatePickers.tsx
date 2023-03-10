@@ -9,38 +9,80 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import ua from 'date-fns/locale/uk';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
+import { registerLocale } from 'react-datepicker';
 registerLocale('ua', ua);
 
 const { RangePicker } = antdDatePicker;
+
+type CalendarLocaleType = {
+  sunday?: string;
+  monday?: string;
+  tuesday?: string;
+  wednesday?: string;
+  thursday?: string;
+  friday?: string;
+  saturday?: string;
+  ok?: string;
+  today?: string;
+  yesterday?: string;
+  hours?: string;
+  minutes?: string;
+  seconds?: string;
+  formattedMonthPattern?: string;
+  formattedDayPattern?: string;
+
+  // for DateRangePicker
+  last7Days?: string;
+};
 
 const DatePickers: React.FC = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
 
+  const local: CalendarLocaleType = {
+    sunday: 'неділя',
+    last7Days: 'останні 7 днів',
+    minutes: 'хвилини',
+    hours: 'години',
+    ok: 'Окі-докі',
+  };
+
   return (
-    <div>
+    <div style={{ position: 'relative' }}>
       <p style={{ margin: '20px' }}>Hello DatePicker</p>
 
-      <div style={{ margin: '20px' }}>
+      <div style={{ margin: '20px', color: 'red' }}>
         <p>Hello, I'm your default DatePicker for desktop by antd</p>
-        <RangePicker showTime />
+        <RangePicker showTime disabled />
       </div>
 
-      <div style={{ margin: '20px' }}>
+      <div style={{ margin: '20px', color: 'yellowgreen' }}>
         <p>Hello, I'm DatePicker by rsuite</p>
         {/* https://rsuitejs.com/components/date-range-picker/ */}
         <DateRangePicker
           showMeridian
-          format='yyyy-MM-dd HH:mm:ss'
+          format='yyyy-MM-dd HH:mm' // 24 формат отображения
           defaultCalendarValue={[
-            new Date('2022-02-01 00:00:00'),
-            new Date('2022-03-01 23:59:59'),
+            new Date('2022-02-01 00:00'),
+            new Date('2022-03-01 23:59'),
           ]}
+          editable={false}
+          locale={local}
+          // showOneCalendar //для времени не работает
+        />
+        <DateRangePicker
+          showMeridian
+          format='yyyy-MM-dd hh:mm aa' // 12 формат отображения
+          defaultCalendarValue={[
+            new Date('2022-02-01 00:00'),
+            new Date('2022-03-01 23:59'),
+          ]}
+          editable={false}
+          // placement='autoVerticalEnd' // ???
         />
       </div>
 
-      <div style={{ margin: '20px' }}>
+      <div style={{ margin: '20px', color: 'red' }}>
         <p>Hello, I'm DatePicker, Crafted by HackerOne</p>
         {/* https://reactdatepicker.com/ */}
         <div>

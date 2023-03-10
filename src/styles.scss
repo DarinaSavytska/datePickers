@@ -5,4 +5,15 @@
     height: auto;
     min-width: auto;
   }
+
+  // .rs-stack {
+  //   width: 90vw;
+  // }
+  .rs-anim-fade.rs-anim-in {
+    top: 3vw !important;
+  }
+}
+
+body {
+  overflow: hidden;
 }
