@@ -60,7 +60,7 @@ const DatePickers: React.FC = () => {
         <p>Hello, I'm DatePicker by rsuite</p>
         {/* https://rsuitejs.com/components/date-range-picker/ */}
         <DateRangePicker
-          showMeridian
+          // showMeridian
           format='yyyy-MM-dd HH:mm' // 24 формат отображения
           defaultCalendarValue={[
             new Date('2022-02-01 00:00'),
@@ -78,27 +78,27 @@ const DatePickers: React.FC = () => {
             new Date('2022-03-01 23:59'),
           ]}
           editable={false}
-          // placement='autoVerticalEnd' // ???
         />
       </div>
 
-      <div style={{ margin: '20px', color: 'red' }}>
+      <div style={{ color: 'red' }}>
         <p>Hello, I'm DatePicker, Crafted by HackerOne</p>
         {/* https://reactdatepicker.com/ */}
-        <div>
+        <div style={{ display: 'flex', flexDirection: 'row' }}>
           <DatePicker
+          style={{ dislay: 'flex', width: 'auto' }}
             selected={startDate}
             onChange={date => setStartDate(date)}
             timeInputLabel='Time:'
-            dateFormat='MM/dd/yyyy h:mm aa'
+            dateFormat='MM/dd/yyyy H:mm'
             showTimeInput
             startDate={startDate}
             endDate={endDate}
             selectsStart
             locale='ua'
           />
-          <p>to</p>
           <DatePicker
+          style={{ dislay: 'flex', width: 'auto' }}
             selected={endDate}
             onChange={date => setEndDate(date)}
             timeInputLabel='Time:'
