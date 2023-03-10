@@ -2,8 +2,10 @@
   .rs-picker-daterange-calendar-group {
     display: flex;
     flex-direction: column;
-    height: auto;
+    // height: auto;
     min-width: auto;
+    height: 300px;
+    overflow: auto;
   }
 
   // .rs-stack {
