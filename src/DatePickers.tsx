@@ -4,13 +4,13 @@ import { DatePicker as antdDatePicker } from 'antd';
 import { DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.css';
 import './styles.scss';
-import subDays from 'date-fns/subDays';
-import startOfWeek from 'date-fns/startOfWeek';
-import endOfWeek from 'date-fns/endOfWeek';
-import addDays from 'date-fns/addDays';
-import startOfMonth from 'date-fns/startOfMonth';
-import endOfMonth from 'date-fns/endOfMonth';
-import addMonths from 'date-fns/addMonths';
+// import subDays from 'date-fns/subDays';
+// import startOfWeek from 'date-fns/startOfWeek';
+// import endOfWeek from 'date-fns/endOfWeek';
+// import addDays from 'date-fns/addDays';
+// import startOfMonth from 'date-fns/startOfMonth';
+// import endOfMonth from 'date-fns/endOfMonth';
+// import addMonths from 'date-fns/addMonths';
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -43,8 +43,8 @@ type CalendarLocaleType = {
 };
 
 const DatePickers: React.FC = () => {
-  const [startDate, setStartDate] = useState(new Date());
-  const [endDate, setEndDate] = useState(new Date());
+  // const [startDate, setStartDate] = useState(new Date());
+  // const [endDate, setEndDate] = useState(new Date());
 
   const local: CalendarLocaleType = {
     sunday: 'неділя',
@@ -54,101 +54,31 @@ const DatePickers: React.FC = () => {
     ok: 'Окі-докі',
   };
 
-  
-// const predefinedRanges = [
-//   {
-//     label: 'Today',
-//     value: [new Date(), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Yesterday',
-//     value: [addDays(new Date(), -1), addDays(new Date(), -1)],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'This week',
-//     value: [startOfWeek(new Date()), endOfWeek(new Date())],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Last 7 days',
-//     value: [subDays(new Date(), 6), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Last 30 days',
-//     value: [subDays(new Date(), 29), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'This month',
-//     value: [startOfMonth(new Date()), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Last month',
-//     value: [startOfMonth(addMonths(new Date(), -1)), endOfMonth(addMonths(new Date(), -1))],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'This year',
-//     value: [new Date(new Date().getFullYear(), 0, 1), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Last year',
-//     value: [new Date(new Date().getFullYear() - 1, 0, 1), new Date(new Date().getFullYear(), 0, 0)],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'All time',
-//     value: [new Date(new Date().getFullYear() - 1, 0, 1), new Date()],
-//     placement: 'left'
-//   },
-//   {
-//     label: 'Last week',
-//     closeOverlay: false,
-//     value: value => {
-//       const [start = new Date()] = value || [];
-//       return [
-//         addDays(startOfWeek(start, { weekStartsOn: 0 }), -7),
-//         addDays(endOfWeek(start, { weekStartsOn: 0 }), -7)
-//       ];
-//     },
-//     appearance: 'default'
-//   },
-//   {
-//     label: 'Next week',
-//     closeOverlay: false,
-//     value: value => {
-//       const [start = new Date()] = value || [];
-//       return [
-//         addDays(startOfWeek(start, { weekStartsOn: 0 }), 7),
-//         addDays(endOfWeek(start, { weekStartsOn: 0 }), 7)
-//       ];
-//     },
-//     appearance: 'default'
-//   }
-// ];
-
+  const [is12Value, setIs12Value] = useState<boolean>(true);
 
   return (
     <div style={{ position: 'relative' }}>
       <p style={{ margin: '20px' }}>Hello DatePicker</p>
 
-      <div style={{ margin: '20px', color: 'red' }}>
+      {/* <div style={{ margin: '20px', color: 'red' }}>
         <p>Hello, I'm your default DatePicker for desktop by antd</p>
         <RangePicker showTime disabled />
+      </div> */}
+
+      <p style={{ textAlign: 'center' }}>Select time format</p>
+
+      <div style={{ display: 'flex', gap: '10px', justifyContent: 'center' }}>
+        <button onClick={() => setIs12Value(true)}>12</button>
+        <button onClick={() => setIs12Value(false)}>24</button>
       </div>
 
       <div style={{ margin: '20px', color: 'yellowgreen' }}>
         <p>Hello, I'm DatePicker by rsuite</p>
         {/* https://rsuitejs.com/components/date-range-picker/ */}
-        <p>Частичная локализация, 24 часа формат</p>
+        {/* <p>Частичная локализация, 24 часа формат</p> */}
         <DateRangePicker
-          // showMeridian
-          format='yyyy-MM-dd HH:mm' // 24 формат отображения
+          showMeridian={is12Value}
+          format={is12Value ? 'yyyy-MM-dd hh:mm aa' : 'yyyy-MM-dd HH:mm'} // 24 формат отображения
           defaultCalendarValue={[
             new Date('2022-02-01 00:00'),
             new Date('2022-03-01 23:59'),
@@ -157,7 +87,7 @@ const DatePickers: React.FC = () => {
           locale={local}
           // showOneCalendar //для времени не работает
         />
-        <p>12 часов формат</p>
+        {/* <p>12 часов формат</p>
         <DateRangePicker
           // ranges={predefinedRanges} // проблемы с типами
           showMeridian
@@ -167,12 +97,12 @@ const DatePickers: React.FC = () => {
             new Date('2022-03-01 23:59'),
           ]}
           editable={false}
-        />
+        /> */}
       </div>
 
-      <div style={{ color: 'red' }}>
+      {/* <div style={{ color: 'red' }}>
         <p>Hello, I'm DatePicker, Crafted by HackerOne</p>
-        {/* https://reactdatepicker.com/ */}
+        https://reactdatepicker.com/
         <DatePicker
           style={{ dislay: 'flex', width: 'auto' }}
           selected={startDate}
@@ -200,7 +130,7 @@ const DatePickers: React.FC = () => {
           locale='ua'
           disabledKeyboardNavigation
         />
-      </div>
+      </div> */}
     </div>
   );
 };
