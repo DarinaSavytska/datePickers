@@ -17,9 +17,19 @@
   }
 
   .rs-anim-fade.rs-anim-in {
-    top: 3vw !important;
+    top: 30vw !important;
     width: 85vw;
   }
+}
+
+.rs-modal-backdrop.rs-anim-fade.rs-anim-in {
+  width: 100%;
+  height: 100%;
+  top: 0 !important;
+}
+
+.rs-anim-fade.rs-anim-in {
+  z-index: 1000000;
 }
 
 .rs-theme-high-contrast {

@@ -1,9 +1,10 @@
 {
   "name": "datepickers",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "private": true,
   "homepage": "https://DarinaSavytska.github.io/datePickers/",
   "dependencies": {
+    "@fluentui/react": "^8.107.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
