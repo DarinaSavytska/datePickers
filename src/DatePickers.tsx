@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { DatePicker as antdDatePicker } from 'antd';
 
-import { DateRangePicker } from 'rsuite';
+import { CustomProvider, DateRangePicker } from 'rsuite';
 import 'rsuite/dist/rsuite.css';
 import './styles.scss';
+import './custom-theme.less';
+
 // import subDays from 'date-fns/subDays';
 // import startOfWeek from 'date-fns/startOfWeek';
 // import endOfWeek from 'date-fns/endOfWeek';
@@ -43,8 +45,8 @@ type CalendarLocaleType = {
 };
 
 const DatePickers: React.FC = () => {
-  // const [startDate, setStartDate] = useState(new Date());
-  // const [endDate, setEndDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
 
   const local: CalendarLocaleType = {
     sunday: 'неділя',
@@ -60,10 +62,10 @@ const DatePickers: React.FC = () => {
     <div style={{ position: 'relative' }}>
       <p style={{ margin: '20px' }}>Hello DatePicker</p>
 
-      {/* <div style={{ margin: '20px', color: 'red' }}>
+      <div style={{ margin: '20px', color: 'red' }}>
         <p>Hello, I'm your default DatePicker for desktop by antd</p>
         <RangePicker showTime disabled />
-      </div> */}
+      </div>
 
       <p style={{ textAlign: 'center' }}>Select time format</p>
 
@@ -76,17 +78,26 @@ const DatePickers: React.FC = () => {
         <p>Hello, I'm DatePicker by rsuite</p>
         {/* https://rsuitejs.com/components/date-range-picker/ */}
         {/* <p>Частичная локализация, 24 часа формат</p> */}
-        <DateRangePicker
-          showMeridian={is12Value}
-          format={is12Value ? 'yyyy-MM-dd hh:mm aa' : 'yyyy-MM-dd HH:mm'} // 24 формат отображения
-          defaultCalendarValue={[
-            new Date('2022-02-01 00:00'),
-            new Date('2022-03-01 23:59'),
-          ]}
-          editable={false}
-          locale={local}
-          // showOneCalendar //для времени не работает
-        />
+        <CustomProvider theme='light'>
+          <DateRangePicker
+            showMeridian={is12Value}
+            format={is12Value ? 'yyyy-MM-dd hh:mm aa' : 'yyyy-MM-dd HH:mm'} // 24 формат отображения
+            defaultCalendarValue={[
+              new Date('2022-02-01 00:00'),
+              new Date('2022-03-01 23:59'),
+            ]}
+            editable={false}
+            locale={local}
+            // renderExtraFooter={() => {
+            //   return <button>ololo</button>
+            // }}
+            // renderTitle={date => {
+            //   console.log('date', date);
+            //   return <p>Травень</p>;
+            // }}
+            // showOneCalendar //для времени не работает
+          />
+        </CustomProvider>
         {/* <p>12 часов формат</p>
         <DateRangePicker
           // ranges={predefinedRanges} // проблемы с типами
@@ -100,7 +111,7 @@ const DatePickers: React.FC = () => {
         /> */}
       </div>
 
-      {/* <div style={{ color: 'red' }}>
+      <div style={{ color: 'red' }}>
         <p>Hello, I'm DatePicker, Crafted by HackerOne</p>
         https://reactdatepicker.com/
         <DatePicker
@@ -130,7 +141,7 @@ const DatePickers: React.FC = () => {
           locale='ua'
           disabledKeyboardNavigation
         />
-      </div> */}
+      </div>
     </div>
   );
 };
