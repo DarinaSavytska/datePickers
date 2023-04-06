@@ -64,7 +64,7 @@ const DatePickers: React.FC = () => {
 
       <div style={{ margin: '20px', color: 'red' }}>
         <p>Hello, I'm your default DatePicker for desktop by antd</p>
-        <RangePicker showTime disabled />
+        <RangePicker showTime />
       </div>
 
       <p style={{ textAlign: 'center' }}>Select time format</p>
